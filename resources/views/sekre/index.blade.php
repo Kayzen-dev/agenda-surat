@@ -32,6 +32,9 @@
                 <livewire:Sekre.sekre-index/>
 
 
+                
+
+
                 </div>
             </div>
         </div>

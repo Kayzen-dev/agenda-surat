@@ -1,3 +1,6 @@
 <div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
+    <livewire:SuratMasuk.surat-masuk-create/>
+    <livewire:SuratMasuk.surat-masuk-edit/>
+    <livewire:SuratMasuk.surat-masuk-delete/>
+    <livewire:SuratMasuk.surat-masuk-table/>
 </div>

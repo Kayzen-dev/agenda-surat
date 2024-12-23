@@ -1,4 +1,4 @@
-<div wire:poll.3s>
+<div wire:poll>
     <x-select wire:model="paginate" class="text-xs mt-8">
         <option value="3">3</option>
         <option value="5">5</option>
@@ -63,7 +63,7 @@
                                 type="button" class="text-sm">Edit</x-button>
 
                             <x-danger-button
-                                @click="$dispatch('dispatch-surat-masuk-table-delete', { id: '{{ $item->id }}' })">
+                                @click="$dispatch('dispatch-surat-masuk-table-delete', { id: '{{ $item->id }}', isi : '{{ $item->perihal_isi_surat }}' })">
                                 Delete</x-danger-button>
                         </td>
                         <td class="text-center">{{ $item->id }}</td>

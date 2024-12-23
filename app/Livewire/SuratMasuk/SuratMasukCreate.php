@@ -2,8 +2,10 @@
 
 namespace App\Livewire\SuratMasuk;
 
-use App\Livewire\Forms\SuratMasukForm;
+use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
+use App\Livewire\Forms\SuratMasukForm;
 
 class SuratMasukCreate extends Component
 {
@@ -14,6 +16,8 @@ class SuratMasukCreate extends Component
 
     public function mount()
     {
+
+
         $this->form->tanggal_terima_surat = now()->toDateString();
     }
 
@@ -21,7 +25,13 @@ class SuratMasukCreate extends Component
 
 
     public function save() {
-        dd($this->form);
+        // dd($this->form);
+        if (Auth::check()) {
+            $auth = Auth::user();
+            $user = User::find($auth->id);
+            $roles = $user->getRoleNames();  
+            $this->form->type_surat = $roles['0'];
+        }
         $this->validate();
         $simpan = $this->form->store();
         is_null($simpan)
@@ -30,6 +40,8 @@ class SuratMasukCreate extends Component
         $this->form->reset();
         $this->dispatch('dispatch-surat-masuk-create-save')->to(SuratMasukTable::class);
         $this->modalSuratMasukCreate = false;
+        $this->form->tanggal_terima_surat = now()->toDateString();
+
     }
 
     public function render()

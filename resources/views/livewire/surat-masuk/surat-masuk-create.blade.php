@@ -4,7 +4,7 @@
   </x-button>
 
 
-  <x-dialog-surat-masuk wire:model.live="modalSuratMasukCreate" :id="'modal-surat-masuk-create'" :maxWidth="'xl'" submit="saveSuratMasuk">
+  <x-dialog-surat-masuk wire:model.live="modalSuratMasukCreate" :id="'modal-surat-masuk-create'" :maxWidth="'xl'" submit="save">
       <x-slot name="title">
           Tambah Surat Masuk
       </x-slot>
@@ -13,7 +13,7 @@
           <div class="grid grid-cols-2 gap-4">
               <div>
                 <label for="kategori_surat" class="label dark:text-grey">Kategori Surat</label>
-                    <select wire:model="form.kategori_surat" id="kategori_surat" class="select select-bordered w-full">
+                    <select wire:model="form.kategori_surat" id="kategori_surat" required class="select select-bordered w-full">
                       <option value="">Pilih Kategori Surat</option>
                       <option value="Surat Perintah">Surat Perintah</option>
                       <option value="Disposisi">Disposisi</option>
@@ -36,11 +36,16 @@
                       <option value="Piagam">Piagam</option>
                       <option value="Surat Perjanjian">Surat Perjanjian</option>
                     </select>
+
+                    <x-input-form-error for="form.kategori_surat" class="mt-1" />
+
               </div>
 
                     <div>
                     <label for="tanggal_terima_surat" class="label">Tanggal Terima Surat</label>
-                    <input wire:model="form.tanggal_terima_surat" type="date" id="tanggal_terima_surat" class="input input-bordered w-full">
+                    <input wire:model="form.tanggal_terima_surat" type="date" id="tanggal_terima_surat" required class="input input-bordered w-full">
+                    <x-input-form-error for="form.tanggal_terima_surat" class="mt-1" />
+                      
                   </div>
 
           </div>
@@ -51,19 +56,25 @@
 
         <div>
           <label for="no_agenda" class="label dark:text-grey">No Agenda</label>
-          <input wire:model="form.no_agenda" type="text" id="no_agenda" class="input input-bordered w-full" placeholder="Masukkan No Agenda">
+          <input wire:model="form.no_agenda" type="number" id="no_agenda" class="input input-bordered w-full" required placeholder="Masukkan No Agenda">
+          <x-input-form-error for="form.no_agenda" class="mt-1" />
+
         </div>
 
         <div>
           <label for="nomor_surat" class="label dark:text-grey">Nomor Surat</label>
-          <input wire:model="form.nomor_surat" type="text" id="nomor_surat" class="input input-bordered w-full" placeholder="Masukkan Nomor Surat">
+          <input wire:model="form.nomor_surat" type="text" id="nomor_surat" class="input input-bordered w-full" required placeholder="Masukkan Nomor Surat">
+          <x-input-form-error for="form.nomor_surat" class="mt-1" />
+          
         </div>
 
 
 
         <div>
           <label for="tanggal_surat" class="label dark:text-grey">Tanggal Surat</label>
-          <input wire:model="form.tanggal_surat" type="date" id="tanggal_surat" class="input input-bordered w-full">
+          <input wire:model="form.tanggal_surat" type="date" id="tanggal_surat" required class="input input-bordered w-full">
+          <x-input-form-error for="form.tanggal_surat" class="mt-1" />
+
         </div>
       </div>
 
@@ -74,12 +85,16 @@
       
               <div>
                 <label for="asal_surat_pengirim" class="label dark:text-grey">Asal Surat/Pengirim</label>
-                <input wire:model="form.asal_surat_pengirim" type="text" id="asal_surat_pengirim" class="input input-bordered w-full" placeholder="Masukkan Asal Surat">
+                <input wire:model="form.asal_surat_pengirim" type="text" id="asal_surat_pengirim" required class="input input-bordered w-full" placeholder="Masukkan Asal Surat">
+                <x-input-form-error for="form.asal_surat_pengirim" class="mt-1" />
+                
               </div>
       
               <div>
                 <label for="perihal_isi_surat" class="label dark:text-grey">Perihal/Isi Surat </label>
-                <input wire:model="form.perihal_isi_surat" type="text" id="perihal_isi_surat" class="input input-bordered w-full" placeholder="Masukkan Perihal">
+                <textarea wire:model="form.perihal_isi_surat" id="perihal" class="textarea textarea-bordered w-full" required placeholder="Masukkan Perihal / Isi surat"></textarea>
+                <x-input-form-error for="form.perihal_isi_surat" class="mt-1" />
+
               </div>
             </div>
 
@@ -88,12 +103,16 @@
       <div class="grid grid-cols-2 gap-4">
         <div>
           <label for="isi_disposisi" class="label dark:text-grey">Isi Disposisi</label>
-          <input wire:model="form.isi_disposisi" type="text" id="isi_disposisi" class="input input-bordered w-full" placeholder="Masukkan Isi Disposisi">
+          <input wire:model="form.isi_disposisi" required type="text" id="isi_disposisi" class="input input-bordered w-full" placeholder="Masukkan Isi Disposisi">
+          <x-input-form-error for="form.isi_disposisi" class="mt-1" />
+
         </div>
 
         <div>
           <label for="keterangan" class="label dark:text-grey">Keterangan</label>
           <textarea wire:model="form.keterangan" id="keterangan" class="textarea textarea-bordered w-full" placeholder="Masukkan Keterangan (opsional)"></textarea>
+          <x-input-form-error for="form.keterangan" class="mt-1" />
+          
         </div>
       </div>
 

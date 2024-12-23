@@ -35,7 +35,7 @@ class SuratMasukForm extends Form
     #[Validate('required', message: 'Perihal atau isi surat wajib diisi')]
     public $perihal_isi_surat;
 
-    #[Validate('nullable', message: 'Isi disposisi tidak wajib diisi')]
+    #[Validate('required', message: 'Isi disposisi tidak wajib diisi')]
     public $isi_disposisi;
 
     #[Validate('nullable', message: 'Keterangan tidak wajib diisi')]
