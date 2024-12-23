@@ -18,14 +18,12 @@ $maxWidth = [
      style="display: none;">
 
 
-        <div @click.away="open = false"  class="modal-box w-11/12 max-w-5xl">
-          <h3 class="text-lg font-bold">Hello!</h3>
-          <p class="py-4">Click the button below to close</p>
-                    <div class="modal-action">
+        <div @click.away="open = false"  class="modal-box max-w-7xl">
+            <div class="modal-action justify-center">
 
-                    {{ $slot }}
+            {{ $slot }}
 
-                    </div>
+            </div>
         </div>
 
 

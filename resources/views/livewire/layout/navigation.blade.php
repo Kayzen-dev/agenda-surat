@@ -49,7 +49,7 @@ new class extends Component
                     <a href="{{ $this->getDashboardRoute() }}" wire:navigate>
                         <div class="flex items-center space-x-2">
                             <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                            <p>Agenda Surat Dispunsip</p>
+                            <p>Aplikasi Agenda Surat </p>
                         </div>
                         
                     </a>
@@ -70,7 +70,7 @@ new class extends Component
 
                     @role('sekretariat')
                         <x-nav-link :href="$this->getDashboardRoute()" :active="request()->routeIs(Request::segment(1))" wire:navigate>
-                            {{ __('Dashboard') }} {{ Request::segment(1) }}
+                            {{ __('Agenda Surat') }} {{ Request::segment(1) }}
                         </x-nav-link>
 {{--                         
                         <x-nav-link :href="route('sekretariat.kearsipan.index')" :active="request()->routeIs('sekretariat.kearsipan.index')" wire:navigate>

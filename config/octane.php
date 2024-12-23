@@ -220,5 +220,11 @@ return [
     */
 
     'max_execution_time' => 30,
+    'timeout' => 120,  
+
+        'host' => env('OCTANE_HOST', '127.0.0.1'),
+        'port' => env('OCTANE_PORT', 8000),
+
+
 
 ];

@@ -3,15 +3,16 @@
 namespace App\Livewire\SuratMasuk;
 
 
-use App\Models\SuratMasuk;
 use Livewire\Component;
+use App\Models\SuratMasuk;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
 
 class SuratMasukTable extends Component
 {
     use WithPagination;
 
-    public $paginate = 10;
+    public $paginate = 5;
     public $sortBy = 'id';
     public $sortDirection = 'asc';
     public $form = [
@@ -44,6 +45,7 @@ class SuratMasukTable extends Component
         $this->resetPage();
     }
 
+    #[On('dispatch-surat-masuk-create-save')]
     public function render()
     {
         $query = SuratMasuk::query();

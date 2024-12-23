@@ -9,7 +9,6 @@ class SuratMasuk extends Model
     // Tabel yang digunakan
     protected $table = 'surat_masuk';
 
-    // Kolom yang dapat diisi (mass assignable)
     protected $fillable = [
         'type_surat',
         'kategori_surat',
@@ -23,7 +22,6 @@ class SuratMasuk extends Model
         'keterangan',
     ];
 
-    // Casting untuk kolom dengan tipe data tertentu
     protected $casts = [
         'tanggal_terima_surat' => 'date',
         'tanggal_surat' => 'date',
