@@ -1,6 +1,6 @@
 <div>
 
-    <x-dialog-modal wire:model.live="modalSuratMasukDelete" > 
+    <x-dialog-modal wire:model.live="modalSuratKeluarDelete" > 
         <x-slot name="title">
             Hapus data surat
         </x-slot>
@@ -11,7 +11,7 @@
         </x-slot>
     
         <x-slot name="footer">
-            <x-secondary-button @click="$wire.set('modalSuratMasukDelete', false)" wire:loading.attr="disabled">
+            <x-secondary-button @click="$wire.set('modalSuratKeluarDelete', false)" wire:loading.attr="disabled">
                Batal
             </x-secondary-button>
     

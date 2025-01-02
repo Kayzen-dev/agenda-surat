@@ -1,47 +1,50 @@
 <?php
 
-namespace App\Livewire\SuratMasuk;
+namespace App\Livewire\SuratKeluar;
 
-use App\Livewire\SuratMasuk\SuratMasukTable;
-use App\Models\SuratMasuk;
 use Livewire\Component;
+use App\Models\SuratKeluar;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Locked;
+use App\Livewire\SuratKeluar\SuratKeluarTable;
 
-class SuratMasukDelete extends Component
+class SuratKeluarDelete extends Component
 {
+
     #[Locked]
     public $id;
 
-    public $modalSuratMasukDelete = false;
+    public $modalSuratKeluarDelete = false;
 
 
     #[Locked]
     public $isi;
 
-    #[On('dispatch-surat-masuk-table-delete')]
+    #[On('dispatch-surat-keluar-table-delete')]
     public function set_surat($id,$isi){
         $this->id = $id;
         $this->isi = $isi;
-        $this->modalSuratMasukDelete = true;
+        $this->modalSuratKeluarDelete = true;
     }
 
     public function del() {
-        $del = SuratMasuk::destroy( $this->id );
+        $del = SuratKeluar::destroy( $this->id );
 
         ($del)
         ? $this->dispatch('notify', title: 'success',message: 'data berhasil dihapus')
         : $this->dispatch('notify', title: 'fail', message: 'data gagal dihapus ');
         // $this->form->reset();
-        $this->dispatch('dispatch-surat-masuk-delete-del')->to(SuratMasukTable::class);
-        $this->modalSuratMasukDelete = false;
+
+        $this->dispatch('dispatch-surat-keluar-delete-del')->to(SuratKeluarTable::class);
+        $this->modalSuratKeluarDelete = false;
     }
 
 
 
-    
     public function render()
     {
-        return view('livewire.surat-masuk.surat-masuk-delete');
+        return view('livewire.surat-keluar.surat-keluar-delete');
     }
+
+
 }

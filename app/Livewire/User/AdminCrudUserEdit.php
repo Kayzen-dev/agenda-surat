@@ -39,7 +39,7 @@ class AdminCrudUserEdit extends Component
         ? $this->dispatch('notify', title: 'fail', message: 'data gagal diUpdate')
         : $this->dispatch('notify', title: 'success',message: 'data berhasil diUpdate');
         $this->form->reset();
-        $this->dispatch('dispatch-admin-crud-user-create-edit')->to(AdminCrudUserTable::class);
+        $this->dispatch('dispatch-admin-crud-user-update-edit')->to(AdminCrudUserTable::class);
         $this->modalUserEdit = false;
     }
 

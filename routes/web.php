@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\SuratMasuk;
 use App\Exports\UsersExport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -14,6 +15,8 @@ Route::get('/guest', function(){
 
 
 Route::middleware(['auth','verified','chek_role'])->group(function(){
+
+    
     Route::get('/home', function(){
         Auth::logout();
         return view('welcome');
@@ -55,6 +58,11 @@ Route::middleware(['auth','verified','chek_role'])->group(function(){
         
         Route::get('/index', \App\Livewire\Sekre\SekreIndex::class)->name('sekretariat.index');
         // Route::get('/kearsipan', \App\Livewire\Arsip\Kearsipan::class)->name('sekretariat.kearsipan.index');
+
+        Route::get('/surat-masuk', function () {
+            return SuratMasuk::whereDoesntHave('suratKeluar')
+                ->get(['id', 'nomor_surat', 'asal_surat_pengirim'])->toArray();
+        });
 
     });
 

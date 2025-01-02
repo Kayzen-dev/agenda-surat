@@ -12,26 +12,24 @@ class SuratMasukCreate extends Component
     
     public SuratMasukForm $form;
     public $modalSuratMasukCreate = false;
-    public $tanggal_terima_surat;
 
     public function mount()
     {
-
 
         $this->form->tanggal_terima_surat = now()->toDateString();
     }
 
 
-
-
     public function save() {
-        // dd($this->form);
         if (Auth::check()) {
             $auth = Auth::user();
             $user = User::find($auth->id);
             $roles = $user->getRoleNames();  
             $this->form->type_surat = $roles['0'];
         }
+
+        // dd($this->form);
+
         $this->validate();
         $simpan = $this->form->store();
         is_null($simpan)

@@ -4,6 +4,5 @@ return [
     App\Providers\AppServiceProvider::class,
     App\Providers\VoltServiceProvider::class,
     Spatie\Permission\PermissionServiceProvider::class,
-    Maatwebsite\Excel\ExcelServiceProvider::class,
-    Mckenziearts\Notify\LaravelNotifyServiceProvider::class
+    Maatwebsite\Excel\ExcelServiceProvider::class
 ];

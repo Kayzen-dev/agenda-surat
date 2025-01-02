@@ -21,8 +21,8 @@ new #[Layout('layouts.guest')] class extends Component
         $this->validate();
 
         $this->form->authenticate();
-        $auth = Auth::user();
-        $user = User::find($auth->id);
+        $authID = Auth::user()->id;
+        $user = User::find($authID);
 
         // Periksa apakah pengguna sudah login di perangkat lain
         if (Auth::check() && $user->status_login) {
@@ -35,8 +35,8 @@ new #[Layout('layouts.guest')] class extends Component
 
         // Set status_login menjadi true setelah login berhasil
         if (Auth::check()) {
-            $auth = Auth::user();
-            $user = User::find($auth->id);
+            $authID = Auth::user()->id;
+            $user = User::find($authID);
             $user->status_login = true;
             $user->save();
         }
@@ -74,22 +74,6 @@ new #[Layout('layouts.guest')] class extends Component
         <div class="text-red-700 px-4 py-3 rounded mb-4">
             {{ session('error_message') }}
         </div>
-        {{-- <div role="alert" class="alert alert-error">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6 shrink-0 stroke-current"
-              fill="none"
-              viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>
-                {{ session('error_message') }}
-            </span>
-        </div> --}}
     @endif
 
     @if(session('message'))
@@ -103,13 +87,6 @@ new #[Layout('layouts.guest')] class extends Component
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form wire:submit="login">
-        <!-- Email Address -->
-        {{-- <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="form.email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('form.email')" class="mt-2" />
-        </div> --}}
-
                 <!-- id_user Address username -->
                 <div>
                     <x-input-label for="id_user" :value="__('Email atau Username')" />
@@ -119,17 +96,6 @@ new #[Layout('layouts.guest')] class extends Component
         
 
         <!-- Password -->
-        {{-- <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input wire:model="form.password" id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
-        </div> --}}
-
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
         
@@ -148,12 +114,12 @@ new #[Layout('layouts.guest')] class extends Component
             <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
         </div>
         <!-- Remember Me -->
-        {{-- <div class="block mt-4">
+        <div class="block mt-4">
             <label for="remember" class="inline-flex items-center">
                 <input wire:model="form.remember" id="remember" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
                 <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
             </label>
-        </div> --}}
+        </div>
 
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))

@@ -2,64 +2,41 @@
 
 namespace App\Livewire\SuratMasuk;
 
-
+use App\Livewire\Forms\SuratMasukForm;
 use Livewire\Component;
-use App\Models\SuratMasuk;
+use App\Traits\WithSorting;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use App\Models\SuratMasuk;
 
 class SuratMasukTable extends Component
 {
-    use WithPagination;
+    use WithPagination, WithSorting;
 
-    public $paginate = 5;
-    public $sortBy = 'id';
-    public $sortDirection = 'asc';
-    public $form = [
-        'id' => '',
-        'type_surat' => '',
-        'kategori_surat' => '',
-        'asal_surat_pengirim' => '',
-        'perihal_isi_surat' => '',
-    ];
+    public SuratMasukForm $form;
 
-    protected $updatesQueryString = [
-        'paginate',
-        'sortBy',
-        'sortDirection',
-        'form' => ['except' => []],
-    ];
+    public $paginate = 5; // Jumlah data per halaman
+    public $sortBy = 'surat_masuk.id'; // Kolom default untuk pengurutan
+    public $sortDirection = 'desc'; // Arah pengurutan default
 
-    public function sortField($field)
-    {
-        if ($this->sortBy === $field) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortBy = $field;
-            $this->sortDirection = 'asc';
-        }
-    }
-
-    public function updatingForm()
-    {
-        $this->resetPage();
-    }
-
+    // Realtime proses
     #[On('dispatch-surat-masuk-create-save')]
+    #[On('dispatch-surat-masuk-update-edit')]
+    #[On('dispatch-surat-masuk-delete-del')]
     public function render()
     {
-        $query = SuratMasuk::query();
-
-        // Filter data berdasarkan input pencarian
-        foreach ($this->form as $key => $value) {
-            if (!empty($value)) {
-                $query->where($key, 'like', "%$value%");
-            }
-        }
-
-        $data = $query->orderBy($this->sortBy, $this->sortDirection)
-            ->paginate($this->paginate);
-
-        return view('livewire.surat-masuk.surat-masuk-table', compact('data'));
+        return view('livewire.surat-masuk.surat-masuk-table', [
+            'data' => SuratMasuk::where('id', 'like', '%' . $this->form->id . '%')
+                ->where('kategori_surat', 'like', '%' . $this->form->kategori_surat . '%')
+                ->where('tanggal_terima_surat', 'like', '%' . $this->form->tanggal_terima_surat . '%')
+                ->where('no_agenda', 'like', '%' . $this->form->no_agenda . '%')
+                ->where('nomor_surat', 'like', '%' . $this->form->nomor_surat . '%')
+                ->where('asal_surat_pengirim', 'like', '%' . $this->form->asal_surat_pengirim . '%')
+                ->with('suratKeluar')
+                ->orderBy($this->sortBy, $this->sortDirection)
+                ->paginate($this->paginate),
+        ]);
     }
+
+    
 }
