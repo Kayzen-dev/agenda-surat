@@ -14,8 +14,8 @@ class Logout
     public function __invoke(): void
     {
         if (Auth::check()) {
-            $auth = Auth::user();
-            $user = User::find($auth->id);
+            $authID = Auth::user()->id;
+            $user = User::find($authID);
             $user->status_login = false;
             $user->save();
         }

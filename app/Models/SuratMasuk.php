@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\SuratKeluar;
 use Illuminate\Database\Eloquent\Model;
 
 class SuratMasuk extends Model
@@ -22,8 +23,8 @@ class SuratMasuk extends Model
         'keterangan',
     ];
 
-    protected $casts = [
-        'tanggal_terima_surat' => 'date',
-        'tanggal_surat' => 'date',
-    ];
+    public function suratKeluar()
+    {
+        return $this->hasOne(SuratKeluar::class ,'id_surat_masuk');
+    }
 }

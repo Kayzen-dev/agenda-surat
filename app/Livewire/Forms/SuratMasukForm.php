@@ -8,6 +8,9 @@ use Livewire\Attributes\Validate;
 
 class SuratMasukForm extends Form
 {
+    public ?SuratMasuk $suratMasuk = null;
+    public $id;
+
     #[Validate('required', message: 'Tipe surat wajib diisi')]
     #[Validate('in:kearsipan,sekretariat,layanan,pengembangan', message: 'Tipe surat tidak valid')]
     public $type_surat;
@@ -79,6 +82,30 @@ class SuratMasukForm extends Form
         ]);
 
         return $suratMasuk;
+    }
+
+
+    public function setSuratMasuk(SuratMasuk $suratMasuk)
+    {
+
+
+        $this->suratMasuk = $suratMasuk;
+        $this->id = $suratMasuk->id;
+
+        $this->type_surat = $suratMasuk->type_surat;
+        $this->kategori_surat = $suratMasuk->kategori_surat;
+        $this->tanggal_terima_surat = $suratMasuk->tanggal_terima_surat;
+        $this->no_agenda = $suratMasuk->no_agenda;
+        $this->nomor_surat = $suratMasuk->nomor_surat;
+        $this->tanggal_surat = $suratMasuk->tanggal_surat;
+        $this->asal_surat_pengirim = $suratMasuk->asal_surat_pengirim;
+        $this->perihal_isi_surat = $suratMasuk->perihal_isi_surat;
+        $this->isi_disposisi = $suratMasuk->isi_disposisi;
+        $this->keterangan = $suratMasuk->keterangan;
+
+
+        
+
     }
 
     public function delete($id)

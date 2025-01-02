@@ -21,8 +21,8 @@ class checkUser
     {
 
         if (Auth::check()) {
-                $auth = Auth::user();
-                $user = User::find($auth->id);
+                $authID = Auth::user()->id;
+                $user = User::find($authID);
         
             // if ($user->hasRole('admin')) {
             //     if (!$user->admin) {

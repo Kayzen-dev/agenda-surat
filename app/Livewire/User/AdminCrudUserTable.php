@@ -21,7 +21,7 @@ class AdminCrudUserTable extends Component
 
     // Realtime proses
     #[On('dispatch-admin-crud-user-create-save')]
-    #[On('dispatch-admin-crud-user-create-edit')]
+    #[On('dispatch-admin-crud-user-update-edit')]
     #[On('dispatch-admin-crud-user-delete-del')]
     public function render()
     {

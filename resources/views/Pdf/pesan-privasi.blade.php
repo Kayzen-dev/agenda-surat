@@ -65,3 +65,8 @@
     </table>
 </body>
 </html>
+{{-- 
+$pdf = PDF::loadView('Pdf.pesan', compact('pesan'));
+
+// Mengunduh PDF
+return $pdf->download('pesan.pdf'); --}}
